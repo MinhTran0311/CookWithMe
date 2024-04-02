@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "981168352717",
+    "firebase_url": "https://cookwithme-4dc5c-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "cookwithme-4dc5c",
+    "storage_bucket": "cookwithme-4dc5c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:981168352717:android:829d91d4a338101b992884",
+        "android_client_info": {
+          "package_name": "com.example.cook_with_me"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMAnroUE7keR7zLXuSu3RkIbnw_prFnuw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
