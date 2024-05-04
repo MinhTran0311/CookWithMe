@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cook_with_me/core/router/router.dart';
+import 'package:cook_with_me/modules/config/custom_router.dart';
+import 'package:cook_with_me/modules/config/route_paths.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,10 +23,12 @@ void main() async {
 
   // Running the app
   runApp(ProviderScope(
-    child: MaterialApp.router(
+    child: MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Quizzz",
-      routerConfig: getRouter(),
+      //routerConfig: getRouter(),
+      onGenerateRoute: CustomRouter.onGenerateRoute,
+      initialRoute: RoutePaths.Home,
       theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(),
       ),

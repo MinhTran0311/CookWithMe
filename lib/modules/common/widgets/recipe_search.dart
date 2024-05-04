@@ -63,6 +63,7 @@ class SearchResult extends ConsumerWidget {
     return ListView.builder(
       itemBuilder: (context, index) => ListTile(
         onTap: () {
+          //navigate to recipe page
           print(recipes[index].name);
         },
         leading: Icon(Icons.restaurant_menu),

@@ -7,12 +7,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ScreenFrame(
-      body: Container(
-        height: 900,
-        child: Column(
-            children: [AddNoteWidget(), Expanded(child: NoteListWidget())]),
-      ),
+    return Container(
+      height: 900,
+      child: Column(
+          children: [AddNoteWidget(), Expanded(child: NoteListWidget())]),
     );
   }
 }
