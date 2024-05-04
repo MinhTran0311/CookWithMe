@@ -1,5 +1,4 @@
 import 'package:cook_with_me/core/provider/recipe_provider.dart';
-import 'package:cook_with_me/modules/common/screen/screen_frame.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -34,7 +33,7 @@ class AddNoteWidget extends ConsumerWidget {
           onPressed: () {
             if (_controller.text.trim().isEmpty) return;
 
-            ref.watch(recipeProvider.notifier).addRecipe(_controller.text);
+            //ref.watch(recipeProvider.notifier).addRecipe(_controller.text);
             _controller.clear();
           },
           child: const Text('Add note'),

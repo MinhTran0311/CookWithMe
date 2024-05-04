@@ -1,10 +1,10 @@
 class RecipeCategory {
   final String id;
-  final String category;
+  final String name;
 
-  RecipeCategory({required this.id, required this.category});
+  RecipeCategory({required this.id, required this.name});
 
   factory RecipeCategory.fromFirestore(Map<String, dynamic> data, String id) {
-    return RecipeCategory(id: id, category: data['name']);
+    return RecipeCategory(id: id, name: data['name']);
   }
 }

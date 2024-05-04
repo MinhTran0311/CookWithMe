@@ -1,16 +1,24 @@
 class Recipe {
   final String id;
   final String name;
+  final List<String> steps;
+  final List<String> ingredients;
 
-  Recipe({required this.id, required this.name});
+  Recipe({
+    required this.id,
+    required this.name,
+    required this.steps,
+    required this.ingredients,
+  });
 
   factory Recipe.fromFirestore(Map<String, dynamic> data, String id) {
-    return Recipe(id: id, name: data['name']);
-  }
+    List<String> steps =
+        (data['steps'] as List<dynamic>).map((step) => step as String).toList();
+    List<String> ingredients = (data['ingredients'] as List<dynamic>)
+        .map((ingredient) => ingredient as String)
+        .toList();
 
-  Map<String, dynamic> toFireStore() {
-    return {
-      'name': name,
-    };
+    return Recipe(
+        id: id, name: data['name'], steps: steps, ingredients: ingredients);
   }
 }

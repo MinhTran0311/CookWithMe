@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cook_with_me/core/model/recipe.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,18 +20,25 @@ class RecipeNotifier extends StateNotifier<List<Recipe>> {
     state = notes;
   }
 
-  void addRecipe(String name) async {
-    final recipeData = Recipe(id: '', name: name).toFireStore();
+  // void addRecipe(String name) async {
+  //   final recipeData = Recipe(id: '', name: name).toFireStore();
 
-    final noteRef = await _firestore.collection('recipes').add(recipeData);
-    final note = Recipe.fromFirestore(recipeData, noteRef.id);
+  //   final noteRef = await _firestore.collection('recipes').add(recipeData);
+  //   final note = Recipe.fromFirestore(recipeData, noteRef.id);
 
-    state = [...state, note];
-  }
+  //   state = [...state, note];
+  // }
 
   void deleteRecipe(String id) async {
     await _firestore.collection('recipes').doc(id).delete();
     state = state.where((recipe) => recipe.id != id).toList();
+  }
+
+  Recipe getRecipeById(String id) {
+    if (id.isEmpty) {
+      return state.elementAt(Random().nextInt(state.length));
+    }
+    return state.where((element) => element.id == id).first;
   }
 
   Future<List<Recipe>> searchRecipe(String name) async {
