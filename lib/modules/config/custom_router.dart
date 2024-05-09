@@ -1,8 +1,6 @@
 import 'package:cook_with_me/modules/config/home_page.dart';
 import 'package:cook_with_me/modules/config/route_paths.dart';
-import 'package:cook_with_me/modules/home/home_screen.dart';
 import 'package:cook_with_me/modules/recipe/recipe_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomRouter {
@@ -15,13 +13,13 @@ class CustomRouter {
             builder: (_) => const Scaffold());
 
       case RoutePaths.Random:
-        return CupertinoPageRoute(
-            builder: (context) => const RecipeScreen(),
+        return MaterialPageRoute(
+            builder: (context) => const RecipeScreen(isRandomRecipe: true),
             settings: RouteSettings(
                 name: RoutePaths.Random, arguments: settings.arguments));
 
       case RoutePaths.Home:
-        return CupertinoPageRoute(
+        return MaterialPageRoute(
             builder: (context) => HomePage(),
             settings: const RouteSettings(name: RoutePaths.Home));
 

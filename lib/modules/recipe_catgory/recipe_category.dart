@@ -38,10 +38,10 @@ class CategoryListWidget extends ConsumerWidget {
 
     return GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: count, // Responsive grid based on screen width
+        crossAxisCount: count,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
-        childAspectRatio: 3 / 2, // Aspect ratio of each grid item
+        childAspectRatio: 3 / 2,
       ),
       itemCount: categories.length,
       itemBuilder: (context, index) {

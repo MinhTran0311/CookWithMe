@@ -20,15 +20,6 @@ class RecipeNotifier extends StateNotifier<List<Recipe>> {
     state = notes;
   }
 
-  // void addRecipe(String name) async {
-  //   final recipeData = Recipe(id: '', name: name).toFireStore();
-
-  //   final noteRef = await _firestore.collection('recipes').add(recipeData);
-  //   final note = Recipe.fromFirestore(recipeData, noteRef.id);
-
-  //   state = [...state, note];
-  // }
-
   void deleteRecipe(String id) async {
     await _firestore.collection('recipes').doc(id).delete();
     state = state.where((recipe) => recipe.id != id).toList();
@@ -47,9 +38,17 @@ class RecipeNotifier extends StateNotifier<List<Recipe>> {
         .map((doc) {
           return Recipe.fromFirestore(doc.data(), doc.id);
         })
-        .where((element) => element.name.contains(name))
+        .where((element) =>
+            element.name.toLowerCase().contains(name.toLowerCase()))
         .toList();
     return recipes;
+  }
+
+  List<Recipe> getRecipesByCategory(String category) {
+    return state
+        .where((element) =>
+            element.category.toLowerCase() == category.toLowerCase())
+        .toList();
   }
 }
 

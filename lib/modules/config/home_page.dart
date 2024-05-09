@@ -1,3 +1,4 @@
+import 'package:cook_with_me/core/constants/globals.dart';
 import 'package:cook_with_me/core/enums/bottom_nav_item.dart';
 import 'package:cook_with_me/modules/common/widgets/top_bar.dart';
 import 'package:cook_with_me/modules/common/widgets/tab_navigator.dart';
@@ -11,7 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  BottomNavItem selectedItem = BottomNavItem.one;
+  BottomNavItem selectedItem = BottomNavItem.two;
 
   final Map<BottomNavItem, GlobalKey<NavigatorState>> navigatorKeys = {
     BottomNavItem.one: GlobalKey<NavigatorState>(),
@@ -52,23 +53,14 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        key: AppGlobal.bottomWidgetKey,
         backgroundColor: Colors.white,
         selectedItemColor: Theme.of(context).primaryColor,
         unselectedItemColor: Colors.grey,
         currentIndex: BottomNavItem.values.indexOf(selectedItem),
         showSelectedLabels: false,
         showUnselectedLabels: false,
-        onTap: (index) {
-          final currentSelectedItem = BottomNavItem.values[index];
-          if (selectedItem == currentSelectedItem) {
-            navigatorKeys[selectedItem]
-                ?.currentState
-                ?.popUntil((route) => route.isFirst);
-          }
-          setState(() {
-            selectedItem = currentSelectedItem;
-          });
-        },
+        onTap: (index) => _switchTab(index),
         items: items
             .map((item, icon) => MapEntry(
                 item.toString(),
@@ -82,6 +74,18 @@ class _HomePageState extends State<HomePage> {
             .toList(),
       ),
     );
+  }
+
+  void _switchTab(int index) {
+    final currentSelectedItem = BottomNavItem.values[index];
+    if (selectedItem == currentSelectedItem) {
+      navigatorKeys[selectedItem]
+          ?.currentState
+          ?.popUntil((route) => route.isFirst);
+    }
+    setState(() {
+      selectedItem = currentSelectedItem;
+    });
   }
 
   Widget _buildOffstageNavigator(BottomNavItem currentItem, bool isSelected) {

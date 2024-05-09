@@ -1,6 +1,7 @@
 class Recipe {
   final String id;
   final String name;
+  final String category;
   final List<String> steps;
   final List<String> ingredients;
 
@@ -9,6 +10,7 @@ class Recipe {
     required this.name,
     required this.steps,
     required this.ingredients,
+    required this.category,
   });
 
   factory Recipe.fromFirestore(Map<String, dynamic> data, String id) {
@@ -19,6 +21,10 @@ class Recipe {
         .toList();
 
     return Recipe(
-        id: id, name: data['name'], steps: steps, ingredients: ingredients);
+        id: id,
+        name: data['name'],
+        steps: steps,
+        ingredients: ingredients,
+        category: data["category"]);
   }
 }

@@ -9,7 +9,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RecipeScreen extends ConsumerWidget {
   final String recipeId;
-  const RecipeScreen({super.key, this.recipeId = ""});
+  final bool isRandomRecipe;
+  const RecipeScreen(
+      {super.key, this.recipeId = "", this.isRandomRecipe = false});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,7 +30,7 @@ class RecipeScreen extends ConsumerWidget {
             child: LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
               if (constraints.maxWidth < Breakpoints.sm) {
-                return recipeMobileLayoutWidget(recipe);
+                return _buildMobileLayout(recipe);
               } else if (constraints.maxWidth < Breakpoints.lg) {
                 return _buildTabletLayout(recipe);
               } else {
@@ -38,12 +40,15 @@ class RecipeScreen extends ConsumerWidget {
           );
   }
 
-  Widget recipeMobileLayoutWidget(Recipe recipe) {
+  Widget _buildMobileLayout(Recipe recipe) {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          ScreenTitle(title: recipe.name + " - Recipe"),
+          ScreenTitle(
+              title: isRandomRecipe
+                  ? recipe.name + " - Recipe"
+                  : ("Recipe of the day!!! \n" + recipe.name + " - Recipe")),
           SizedBox(
             height: 16,
           ),
@@ -102,7 +107,10 @@ class RecipeScreen extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          ScreenTitle(title: recipe.name + " - Recipe"),
+          ScreenTitle(
+              title: isRandomRecipe
+                  ? recipe.name + " - Recipe"
+                  : ("Recipe of the day!!! \n" + recipe.name + " - Recipe")),
           SizedBox(
             height: 16,
           ),
@@ -181,7 +189,10 @@ class RecipeScreen extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          ScreenTitle(title: recipe.name + " - Recipe"),
+          ScreenTitle(
+              title: isRandomRecipe
+                  ? recipe.name + " - Recipe"
+                  : ("Recipe of the day!!! \n" + recipe.name + " - Recipe")),
           SizedBox(
             height: 16,
           ),
