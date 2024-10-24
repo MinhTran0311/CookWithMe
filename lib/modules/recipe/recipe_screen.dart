@@ -46,7 +46,7 @@ class RecipeScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           ScreenTitle(
-              title: isRandomRecipe
+              title: !isRandomRecipe
                   ? recipe.name + " - Recipe"
                   : ("Recipe of the day!!! \n" + recipe.name + " - Recipe")),
           SizedBox(
@@ -108,7 +108,7 @@ class RecipeScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           ScreenTitle(
-              title: isRandomRecipe
+              title: !isRandomRecipe
                   ? recipe.name + " - Recipe"
                   : ("Recipe of the day!!! \n" + recipe.name + " - Recipe")),
           SizedBox(
@@ -190,7 +190,7 @@ class RecipeScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           ScreenTitle(
-              title: isRandomRecipe
+              title: !isRandomRecipe
                   ? recipe.name + " - Recipe"
                   : ("Recipe of the day!!! \n" + recipe.name + " - Recipe")),
           SizedBox(
